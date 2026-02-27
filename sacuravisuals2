@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SacuraVisuals | 1.21.4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #050505; color: white;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: fixed; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1a050d 0%, #050505 100%);
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative; z-index: 10;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            min-height: 100vh; text-align: center; padding: 20px 20px 80px 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: clamp(3.5rem, 12vw, 6rem); margin: 0; text-transform: uppercase;
+            color: #ff2d8f;
+            text-shadow: 0 0 25px rgba(255, 45, 143, 0.8);
+            letter-spacing: 8px; font-weight: 900;
+        }
+
+        .subtitle {
+            font-size: 1.4rem; color: #ff85b9; margin: 10px 0 40px;
+            font-weight: 400; letter-spacing: 2px; opacity: 0.9;
+        }
+
+        .btn-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+            padding: 20px 50px; font-size: 1.1rem; font-weight: 800; color: white;
+            background: #ff2d8f; border: none; border-radius: 15px;
+            cursor: pointer; text-decoration: none; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 20px rgba(255, 45, 143, 0.3);
+            text-transform: uppercase; position: relative;
+        }
+
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 45, 143, 0.6); }
+
+        .btn-alt { background: transparent; border: 2px solid #ff2d8f; box-shadow: none; }
+
+        #secret-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 50; transition: all 0.4s ease;
+        }
+
+        .page { display: none; width: 100%; flex-direction: column; align-items: center; }
+        .active { display: flex; animation: pageIn 0.6s forwards; }
+
+        @keyframes pageIn {
+            from { opacity: 0; filter: blur(10px); transform: scale(0.95); }
+            to { opacity: 1; filter: blur(0); transform: scale(1); }
+        }
+
+        .info-card {
+            background: rgba(0, 0, 0, 0.6); padding: 45px;
+            border-radius: 25px; border: 1px solid rgba(255, 45, 143, 0.4);
+            backdrop-filter: blur(12px); max-width: 550px; width: 100%;
+            text-align: left; margin-bottom: 30px;
+        }
+
+        .feature-item { margin: 18px 0; font-size: 1.3rem; color: #fff; display: flex; align-items: center; }
+        .feature-item b { color: #ff2d8f; font-weight: 900; margin-right: 15px; }
+
+        /* Футер - Исправленный (Смайлик + Текст) */
+        .footer-container {
+            position: fixed; bottom: 15px; left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center;
+            gap: 5px; z-index: 100; pointer-events: none;
+        }
+
+        .footer-text {
+            font-size: 0.75rem; color: rgba(255, 45, 143, 0.4);
+            letter-spacing: 2px; font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .footer-emoji {
+            font-size: 1.2rem;
+            color: #ff85b9;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+    <div id="secret-overlay"></div>
+
+    <div class="content-wrapper">
+        
+        <div id="home" class="page active">
+            <h1>SacuraVisuals</h1>
+            <p class="subtitle">Лучшие визуалы на 1.21.4</p>
+            <div class="btn-container">
+                <button class="btn" onclick="runSecret('download')">Скачать</button>
+                <a href="https://t.me/sacuraproject" target="_blank" class="btn btn-alt">Тгк Разраба</a>
+            </div>
+        </div>
+
+        <div id="download" class="page">
+            <h2 style="font-size: 3rem; color: #ff2d8f; margin-bottom: 20px;">SacuraVisuals</h2>
+            <div class="info-card">
+                <div class="feature-item"><b>1.</b> Лучшие функции</div>
+                <div class="feature-item"><b>2.</b> Красивое меню</div>
+                <div class="feature-item"><b>3.</b> Все остальное когда скачаешь ;)</div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="https://t.me/SacuraProject_Bot" target="_blank" class="btn">Скачать в Боте</a>
+                </div>
+            </div>
+            <p style="cursor: pointer; color: #ff2d8f; font-weight: bold; text-decoration: underline;" onclick="runSecret('home')">Назад</p>
+        </div>
+
+    </div>
+
+    <div class="footer-container">
+        <div class="footer-emoji">(⁠｡⁠･⁠ω⁠･⁠｡⁠)⁠ﾉ⁠♡❤️</div>
+        <div class="footer-text">MADE BY_HAVERBOT</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "move": { "enable": true, "speed": 1.2, "direction": "bottom", "out_mode": "out" }
+            }
+        });
+
+        function runSecret(targetPage) {
+            const overlay = document.getElementById('secret-overlay');
+            overlay.style.background = 'radial-gradient(circle, rgba(255,45,143,0) 0%, rgba(255,45,143,0.3) 100%)';
+            overlay.style.backdropFilter = 'contrast(1.2) brightness(1.2)';
+            
+            setTimeout(() => {
+                showPage(targetPage);
+                overlay.style.background = 'transparent';
+                overlay.style.backdropFilter = 'none';
+            }, 250);
+        }
+
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+</html>
